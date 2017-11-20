@@ -12,11 +12,13 @@ class m171013_184833_createDatabase extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('user', [
-            'user_id' => $this->primaryKey(),
-            'user_nome' => $this->string(),
-            'user_status' => $this->integer()->defaultValue(1),
-            'user_cpf' => $this->text(),
+        $this->createTable('unijorge.usuario', [
+            'usuario_id' => $this->primaryKey()->notNull(),
+            'usuario_nome' => $this->string(45)->notNull(),
+            'usuario_status' => $this->integer()->defaultValue(1)->notNull(),
+            'usuario_cpf' => $this->string(18)->notNull(),
+            'usuario_senha' => $this->text()->notNull(),
+            'usuario_foto' => $this->text(),
         ]);
     }
 
@@ -25,23 +27,8 @@ class m171013_184833_createDatabase extends Migration
      */
     public function safeDown()
     {
-        echo "m171013_184833_createDatabase cannot be reverted.\n";
+        $this->dropTable('unijorge.usuario');
 
         return false;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m171013_184833_createDatabase cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

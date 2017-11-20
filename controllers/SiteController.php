@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -74,14 +75,12 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
         $model = new LoginForm();
-d(teste);
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            var_dump("testeeee");
-            exit;
             return $this->goBack();
         }
         return $this->render('login', [
