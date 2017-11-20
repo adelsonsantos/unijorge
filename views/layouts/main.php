@@ -8,6 +8,7 @@
 
 use app\models\DadosUnicoPessoaFisica;
 use app\models\DadosUnicoPessoa;
+use app\models\UnijorgeUsuario;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -66,7 +67,10 @@ AppAsset::register($this);
     <table class="menu">
         <tr>
             <th> <img src="<?php echo Yii::$app->request->baseUrl . '../../image/adab.png'; ?>" style="width: 80px; margin-left:10%; margin-bottom: 10px; margin-top: 10px"></th>
-            <th style="text-align: right"> <h5 style="margin-right: 30px"><i> <?php echo 'Bem Vindo Sr. '. ucwords('Adelson'); ?> </i></h5></th>
+            <th style="text-align: right"> <h5 style="margin-right: 30px"><i>
+                        <?php
+                        $dadosUsuario = UnijorgeUsuario::find()->where(['usuario_id' => Yii::$app->getUser()->id])->all();
+                        echo 'Bem Vindo Sr. '. ucwords($dadosUsuario[0]["usuario_nome"]); ?> </i></h5></th>
         </tr>
     </table>
  <?php
@@ -81,7 +85,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar'],
         'items' => [
             ['label' => 'Início', 'url' => ['/site/index']],
-            ['label' => 'Usuários', 'url' => ['/site/about']]
+            ['label' => 'Usuários', 'url' => ['/unijorge-usuario/index']]
         ],
     ]);
 ?>

@@ -4,7 +4,7 @@
 <?php
 /* @var $this yii\web\View */
 use yii\helpers\Html;
-$this->title = 'Portal ADAB';
+$this->title = 'Unijorge';
 ?>
 <style>
      #imageDiaria {
