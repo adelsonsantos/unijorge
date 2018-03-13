@@ -84,8 +84,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar'],
         'items' => [
-            ['label' => 'Início', 'url' => ['/site/index']],
-            ['label' => 'Usuários', 'url' => ['/unijorge-usuario/index']]
+            ['label' => 'Início', 'url' => ['site/index']],
+            ['label' => 'Usuários', 'url' => ['unijorge-usuario/index']]
         ],
     ]);
 ?>

@@ -227,7 +227,7 @@
                 </div>
             </div>
         </div>
-        <div class="posted-by">Posted By: <a href="http://www.jquery2dotnet.com">Adelson, Iago, Ramon</a></div>
+        <div class="posted-by">Posted By: <a href="http://www.jquery2dotnet.com">Adelson, Vinicius</a></div>
     </div>
 
 

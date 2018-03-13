@@ -1,15 +1,13 @@
-
-
-
 <?php
 /* @var $this yii\web\View */
 use yii\helpers\Html;
+
 $this->title = 'Unijorge';
 ?>
 <style>
-     #imageDiaria {
-        content:url(<?php /*echo Yii::$app->request->baseUrl . '../../image/iconDiarias.png';*/ ?>);
-         margin-left: 30px;
+    #imageDiaria {
+        content: url(<?php /*echo Yii::$app->request->baseUrl . '../../image/iconDiarias.png';*/ ?>);
+        margin-left: 30px;
         margin-bottom: auto;
         margin-top: 5px;
         transition: .5s ease;
@@ -34,6 +32,8 @@ $coord = new LatLng(['lat' => -12.9381172, 'lng' => -38.4101011]);
 $map = new Map([
     'center' => $coord,
     'zoom' => 16,
+    'width' => '98%',
+    'height' => '400',
 ]);
 
 
@@ -121,4 +121,18 @@ $bikeLayer = new BicyclingLayer(['map' => $map->getName()]);
 $map->appendScript($bikeLayer->getJs());
 
 // Display the map -finally :)*/
-echo $map->display();
+
+?>
+
+<div class="row">
+
+</div>
+
+
+<div style="position: absolute; margin-top: -50px">
+    <?= Yii::$app->controller->renderPartial('menu'); ?>
+</div>
+<div class="diarias-view" style="margin-left: 209px; margin-top: 44px; ">
+    <?= $map->display(); ?>
+</div>
+
