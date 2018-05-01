@@ -77,6 +77,23 @@ $this->title = 'Diarias';
                     'parent' => 'administrador',
                     'child' => 'administrador',
                     'item' => [
+                        'name' => 'cadastro-coordenadoria',
+                        'type' => 2,
+                        'description' => 'Cerca',
+                        'link' => 'fence/index',
+                        'sistema_menu' => 2
+                    ],
+                    'assign' => [
+                        'item_name' => 'administrador',
+                        'user_id' => 9,
+                        'sistema_id' => 2
+                    ]
+
+                ],
+                [
+                    'parent' => 'administrador',
+                    'child' => 'administrador',
+                    'item' => [
                         'name' => 'cadastro-raca',
                         'type' => 2,
                         'description' => 'Raça',
@@ -108,7 +125,6 @@ $this->title = 'Diarias';
 
                 ]
             ];
-
 
             if(empty(!$arrayCadastro))
             {
