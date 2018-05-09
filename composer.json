@@ -48,7 +48,9 @@
         "npm-asset/bootstrap": "*",
         "mouf/nodejs-installer": "~1.0",
         "kartik-v/yii2-mpdf": "*",
-        "yii2mod/yii2-google-maps-markers": "~1.4"
+        "yii2mod/yii2-google-maps-markers": "~1.4",
+        "kartik-v/yii2-widget-fileinput": "~1.0.6",
+        "2amigos/yii2-file-upload-widget": "~1.0"
     },
     "config": {
         "process-timeout": 1800,
