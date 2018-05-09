@@ -66,6 +66,7 @@ class PesoBovinoController extends Controller
         $model = new PesoBovino();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           // d($model);
             return $this->redirect(['view', 'id' => $model->peso_id]);
         }
 

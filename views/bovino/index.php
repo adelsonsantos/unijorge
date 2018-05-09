@@ -109,7 +109,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'bovino_id',
                 'bovino_nome',
-                'bovino_status',
                 'bovino_idade',
                 //'raca_id',
 

@@ -37,7 +37,27 @@
     }
 
     .grid {
-        margin-top: 29px;
+        margin-left: 209px;
+    }
+
+    #w0-filters {
+        background-color: rgba(220, 222, 221, 0);
+    }
+
+    .table thead tr {
+        background-color: #dcdedd;
+    }
+
+    .tambem {
+        text-align: right;
+    }
+
+    .font-topo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .grid {
         margin-left: 209px;
     }
 
@@ -55,6 +75,9 @@
 </style>
 <?php
 
+use app\models\Bovino;
+use kartik\date\DatePicker;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -77,17 +100,34 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </div>
     <div class="grid">
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                'peso_id',
-                'bovino_id',
-                'peso_peso',
-                'peso_data',
+        <?php try { echo
+            GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'peso_id',
+                    [
+                        'attribute'=> 'bovino_id',
+                        'value'    => 'bovinos.bovino_nome',
+                        'filter'   => Html::activeDropDownList($searchModel, 'bovino_id', ArrayHelper::map(Bovino::find()->asArray()->orderBy('bovino_nome')->all(), 'bovino_id', 'bovino_nome'), array('class'=>'form-control', 'prompt' => ' '))
+                    ],
+                    'peso_peso',
+                    [
+                        'attribute' => 'peso_data',
+                        'value' => 'peso_data',
+                        'format' => ['Date', 'php:d/m/Y'],
+                        'filter' => DatePicker::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'peso_data',
+                            'pluginOptions' => [
+                                'format' => 'yyyy-mm-dd',
+                                'autoUpdateInput' => false,]])
+                    ],
 
-                ['class' => 'yii\grid\ActionColumn'],
-            ],
-        ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]);
+        } catch (Exception $e) {
+        } ?>
     </div>

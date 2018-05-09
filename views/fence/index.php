@@ -116,7 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'fence_cor',
                         'label' => 'Cor',
                         'encodeLabel' => false,
-                        'filter'   => Html::activeDropDownList($searchModel, 'fence_cor', ArrayHelper::map(Fence::find()->asArray()->orderBy('fence_id')->all(), 'fence_id', ''), ['class'=>'form-control', 'prompt' => '']),
+                        'filter'   => Html::activeDropDownList($searchModel, 'fence_cor', ArrayHelper::map(Fence::find()->asArray()->orderBy('fence_id')->all(), 'fence_id', 'fence_cor'), ['class'=>'form-control', 'prompt' => '']),
                         'value' => function($model){ return '';},
                         'headerOptions' => ['style'=>'text-align:center'],
                         'contentOptions' => function ($model, $key, $index, $column) {
@@ -129,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                     ],
                     'fence_borda',
-                    'fence_status',
+
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

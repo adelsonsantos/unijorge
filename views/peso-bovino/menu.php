@@ -36,8 +36,10 @@ use app\models\PublicAuthItemChild;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $searchModel app\models\DiariaCoordenadoriaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$this->title = 'Diarias';
 ?>
 <script>
    function toggle(className){
@@ -49,7 +51,7 @@ use yii\helpers\Html;
 </script>
 <br>
         <ul class="nav nav-pills nav-stacked" style="width: 200px; text-align: left; margin-top: 75px; margin-left: 5px">
-            <li class="active"><?= Html::a('<span class="glyphicon glyphicon-home"></span>  Home', ['raca'])?></li>
+            <li class="active"><?= Html::a('<span class="glyphicon glyphicon-home"></span>  Home', ['/portal-cordenadoria-gerencia-view/index'])?></li>
             <?php
          //   $arrayMenuCadastro = PublicAuthItemChild::find()->asArray()->innerJoinWith(['item', 'assign'])->where(['sistema_menu' => 1])->andWhere(['user_id' => Yii::$app->user->getId()])->andWhere(['sistema_id' => 1])->all();
 
@@ -62,6 +64,40 @@ use yii\helpers\Html;
                         'type' => 2,
                         'description' => 'Bovino',
                         'link' => 'bovino/index',
+                        'sistema_menu' => 2
+                    ],
+                    'assign' => [
+                        'item_name' => 'administrador',
+                        'user_id' => 9,
+                        'sistema_id' => 2
+                    ]
+
+                ],
+                [
+                    'parent' => 'administrador',
+                    'child' => 'administrador',
+                    'item' => [
+                        'name' => 'cadastro-coordenadoria',
+                        'type' => 2,
+                        'description' => 'Cerca',
+                        'link' => 'fence/index',
+                        'sistema_menu' => 2
+                    ],
+                    'assign' => [
+                        'item_name' => 'administrador',
+                        'user_id' => 9,
+                        'sistema_id' => 2
+                    ]
+
+                ],
+                [
+                    'parent' => 'administrador',
+                    'child' => 'administrador',
+                    'item' => [
+                        'name' => 'cadastro-device',
+                        'type' => 2,
+                        'description' => 'Dispositivo',
+                        'link' => 'device/index',
                         'sistema_menu' => 2
                     ],
                     'assign' => [

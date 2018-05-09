@@ -44,12 +44,12 @@ class Bovino extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'bovino_id' => 'Bovino ID',
+            'bovino_id' => 'ID',
             'bovino_nome' => 'Nome',
             'bovino_status' => 'Status',
             'bovino_idade' => 'Idade',
             'bovino_foto' => 'Foto',
-            'raca_id' => 'Raca ID',
+            'raca_id' => 'Raca',
         ];
     }
 }

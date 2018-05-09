@@ -42,11 +42,11 @@ class Fence extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'fence_id' => 'Fence ID',
-            'fence_descricao' => 'Fence Descricao',
-            'fence_cor' => 'Fence Cor',
-            'fence_borda' => 'Fence Borda',
-            'fence_status' => 'Fence Status',
+            'fence_id' => 'ID',
+            'fence_descricao' => 'Descricao',
+            'fence_cor' => 'Cor',
+            'fence_borda' => 'Borda',
+            'fence_status' => 'Status',
         ];
     }
 

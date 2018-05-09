@@ -46,12 +46,12 @@ use yii\widgets\ActiveForm;
                         <?= $form->field($model, 'peso_peso')->textInput()->label('Peso Kg') ?>
                     </div>
                     <div class="col-sm-3">
-                        <?= $form->field($model, 'peso_data')->widget(
+                        <?= $form->field($model, "peso_data")->widget(
                             DatePicker::className(), [
                             'inline' => false,
                             'clientOptions' => [
                                 'autoclose' => true,
-                                'format' => 'dd/mm/yyyy'
+                                'format' => 'yyyy-mm-dd'
                             ]
                         ])->label('Data') ?>
                     </div>

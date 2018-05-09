@@ -30,7 +30,8 @@ class PesoBovino extends \yii\db\ActiveRecord
         return [
             [['bovino_id', 'peso_peso', 'peso_data'], 'required'],
             [['bovino_id', 'peso_peso'], 'integer'],
-            [['peso_data'], 'safe'],
+            [['peso_data'], 'date', 'format' => 'php:Y-m-d'],
+            //[['peso_data'], 'safe'],
             [['bovino_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bovino::className(), 'targetAttribute' => ['bovino_id' => 'bovino_id']],
         ];
     }
@@ -41,10 +42,15 @@ class PesoBovino extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'peso_id' => 'Peso ID',
-            'bovino_id' => 'Bovino ID',
-            'peso_peso' => 'Peso Peso',
-            'peso_data' => 'Peso Data',
+            'peso_id' => 'ID',
+            'bovino_id' => 'Bovino',
+            'peso_peso' => 'Peso (Kg)',
+            'peso_data' => 'Data da Pesagem',
         ];
+    }
+
+    public function getBovinos()
+    {
+        return $this->hasOne(Bovino::className(), ['bovino_id' => 'bovino_id']);
     }
 }
