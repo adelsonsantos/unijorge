@@ -39,7 +39,7 @@ use yii\helpers\Html;
 /* @var $searchModel app\models\DiariaCoordenadoriaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Diarias';
+$this->title = 'Unijorge';
 ?>
 <script>
    function toggle(className){
@@ -143,6 +143,60 @@ $this->title = 'Diarias';
                 ]
             ];
 
+            $arrayRelatorio = [
+                [
+                    'parent' => 'administrador',
+                    'child' => 'administrador',
+                    'item' => [
+                        'name' => 'cadastro-coordenadoria',
+                        'type' => 2,
+                        'description' => 'Bovino',
+                        'link' => 'bovino/index',
+                        'sistema_menu' => 2
+                    ],
+                    'assign' => [
+                        'item_name' => 'administrador',
+                        'user_id' => 9,
+                        'sistema_id' => 2
+                    ]
+
+                ],
+                [
+                    'parent' => 'administrador',
+                    'child' => 'administrador',
+                    'item' => [
+                        'name' => 'cadastro-raca',
+                        'type' => 2,
+                        'description' => 'Raça',
+                        'link' => 'unijorge-raca/index',
+                        'sistema_menu' => 2
+                    ],
+                    'assign' => [
+                        'item_name' => 'administrador',
+                        'user_id' => 9,
+                        'sistema_id' => 2
+                    ]
+
+                ],
+                [
+                    'parent' => 'administrador',
+                    'child' => 'administrador',
+                    'item' => [
+                        'name' => 'cadastro-peso',
+                        'type' => 2,
+                        'description' => 'Peso Bovino',
+                        'link' => 'peso-bovino/index',
+                        'sistema_menu' => 2
+                    ],
+                    'assign' => [
+                        'item_name' => 'administrador',
+                        'user_id' => 9,
+                        'sistema_id' => 2
+                    ]
+
+                ]
+            ];
+
             if(empty(!$arrayCadastro))
             {
                 ?>
@@ -151,6 +205,17 @@ $this->title = 'Diarias';
                 foreach ($arrayCadastro as $key)
                 {
                     echo "<li class='sub-menu-cadastro' style='display: none'>". Html::a($key['item']["description"], [$key['item']["link"]],['id' => 'itens'])."</li>";
+                }
+            }
+
+            if(empty(!$arrayRelatorio))
+            {
+                ?>
+                <li id="menu-diarias" onclick="toggle('sub-menu-relatorio')"><?= Html::a('<span class="glyphicon glyphicon-chevron-right" ></span> <label>Relatório</label>')?></li>
+                <?php
+                foreach ($arrayRelatorio as $key)
+                {
+                    echo "<li class='sub-menu-relatorio' style='display: none'>". Html::a($key['item']["description"], [$key['item']["link"]],['id' => 'itens'])."</li>";
                 }
             }
             ?>

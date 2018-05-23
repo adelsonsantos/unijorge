@@ -68,6 +68,25 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionAlertOutsideFence()
+    {
+        return $this->render('alert_outside_fence');
+        /*if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            $searchname= explode(":", $data['searchname']);
+            $searchby= explode(":", $data['searchby']);
+            $searchname= $searchname[0];
+            $searchby= $searchby[0];
+            $search = // your logic;
+                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'search' => $search,
+                'code' => 100,
+            ];
+        }*/
+
+    }
+
     /**
      * Login action.
      *

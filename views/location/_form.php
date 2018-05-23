@@ -19,6 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'location_data')->textInput() ?>
 
     <?= $form->field($model, 'device_id')->textInput() ?>
+    <?= $form->field($model, 'location_inside')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

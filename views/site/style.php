@@ -24,5 +24,13 @@
             font-size: 20px;
             font-weight: bold;
         }
+        #imageDiaria {
+            content: url(<?php /*echo Yii::$app->request->baseUrl . '../../image/iconDiarias.png';*/ ?>);
+            margin-left: 30px;
+            margin-bottom: auto;
+            margin-top: 5px;
+            transition: .5s ease;
+            float: left;
+        }
     </style>
 </head>

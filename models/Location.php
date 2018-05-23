@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Exception;
 use Yii\db\Query;
 
 /**
@@ -33,6 +34,7 @@ class Location extends \yii\db\ActiveRecord
             [['location_latitude', 'location_longitude'], 'required'],
             [['location_data'], 'safe'],
             [['device_id'], 'integer'],
+            ['location_inside', 'boolean'],
             [['location_latitude', 'location_longitude'], 'string', 'max' => 255],
             [['device_id'], 'exist', 'skipOnError' => true, 'targetClass' => Device::className(), 'targetAttribute' => ['device_id' => 'device_id']],
         ];
@@ -49,18 +51,33 @@ class Location extends \yii\db\ActiveRecord
             'location_longitude' => 'Location Longitude',
             'location_data' => 'Location Data',
             'device_id' => 'Device ID',
+            'location_inside' => 'location_inside ID',
         ];
     }
+
     public function getLocationDevice()
     {
         return $this->hasOne(Device::className(), ['device_id' => 'device_id']);
     }
 
 
-
-    public function getLocationDevicesIcons(){
+    public function getLocationDevicesIcons()
+    {
         $connection = \Yii::$app->db;
         return $connection->createCommand('SELECT * FROM UNIJORGE.DEVICE D JOIN UNIJORGE.LOCATION L ON D.DEVICE_ID = L.DEVICE_ID AND L.LOCATION_ID = (SELECT LOCATION_ID FROM UNIJORGE.LOCATION LL WHERE DEVICE_ID = D.DEVICE_ID ORDER BY LOCATION_ID DESC LIMIT 1)')->queryAll();
 
+    }
+
+    public function getLocationOutsideFence()
+    {
+        $connection = \Yii::$app->db;
+        try {
+            return $connection->createCommand('SELECT * FROM UNIJORGE.DEVICE D 
+                                                    JOIN UNIJORGE.LOCATION L ON D.DEVICE_ID = L.DEVICE_ID AND L.LOCATION_ID = (SELECT LOCATION_ID FROM UNIJORGE.LOCATION LL WHERE DEVICE_ID = D.DEVICE_ID ORDER BY LOCATION_ID DESC LIMIT 1)
+                                                    JOIN UNIJORGE.BOVINO B ON B.BOVINO_ID = D.BOVINO_ID
+                                                    WHERE L.LOCATION_INSIDE = 0'
+            )->queryAll();
+        } catch (Exception $e) {
+        }
     }
 }
