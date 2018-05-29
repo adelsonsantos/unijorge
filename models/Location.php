@@ -13,6 +13,8 @@ use Yii\db\Query;
  * @property string $location_latitude
  * @property string $location_longitude
  * @property string $location_data
+ * @property string $location_data_report_inicio
+ * @property string $location_data_report_fim
  * @property int $device_id
  */
 class Location extends \yii\db\ActiveRecord
@@ -52,6 +54,8 @@ class Location extends \yii\db\ActiveRecord
             'location_data' => 'Location Data',
             'device_id' => 'Device ID',
             'location_inside' => 'location_inside ID',
+            'location_data_report_inicio' => 'location_data_report_inicio',
+            'location_data_report_fim' => 'location_data_report_fim',
         ];
     }
 
