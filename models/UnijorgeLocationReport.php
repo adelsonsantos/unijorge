@@ -36,7 +36,7 @@ class UnijorgeLocationReport extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-          //  [['location_latitude', 'location_longitude'], 'required'],
+            [['location_data_report_inicio'], 'required'],
             [['location_data'], 'safe'],
             [['device_id'], 'integer'],
             [['location_latitude', 'location_longitude'], 'string', 'max' => 255],

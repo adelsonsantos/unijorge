@@ -26,6 +26,7 @@
 use app\models\Fence;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\color\ColorInput;
 use wbraganca\dynamicform\DynamicFormWidget;
@@ -41,12 +42,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Pesquisar Trajetória', 'url' => [
     <?= Yii::$app->controller->renderPartial('menu'); ?>
 </div>
 <div class="diarias-view" style="margin-left: 209px; margin-top: 53px; ">
+
 <div class="customer-form">
     <?php $form = ActiveForm::begin([
-        'enableClientValidation' => false,
-        'enableAjaxValidation' => true,
-        'validateOnChange' => true,
-        'validateOnBlur' => false,
         'options' => [
             'enctype' => 'multipart/form-data',
             'id' => 'dynamic-form'
@@ -64,7 +62,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Pesquisar Trajetória', 'url' => [
                     </div>
 
                     <div class="col-sm-2">
-                        <?= $form->field($model, 'device_id')->input('number', ['min' => 0, 'max' => 1000]) ->label('Dispositivo') ?>
+                        <?= $form->field($model, 'device_id')->dropDownList(
+                                ArrayHelper::map(\app\models\Device::find()->asArray()->orderBy('device_nome')->all(), 'device_id', 'device_nome'))->label('Dispositivo');
+                        ?>
                     </div>
                 </div>
 
@@ -73,16 +73,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Pesquisar Trajetória', 'url' => [
         <table class="diaria" style=" width: 100%">
             <tr class="bordaMenu">
                 <th class="borda" style="text-align: center; width: 50%">
-
-                    <?= Html::a('Pesquisar', [
-                        '/location-report/index',
-                        'device_id' => 1,
-                        'location_data_report_inicio' => '2018-01-01',
-                        'location_data_report_fim' => '2018-05-28',
-                    ], ['class'=>'btn btn-primary']) ?>
-
-
-
+                    <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
                 </th>
                 <th class="borda" style="text-align: center; width: 50%">
                     <?= Html::a('Voltar', Yii::$app->request->referrer, ['class' => 'btn btn-default']); ?>
@@ -92,5 +83,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Pesquisar Trajetória', 'url' => [
     </div>
     <?php ActiveForm::end(); ?>
 </div>
+
+    <?php
+    if(isset($model->device_id)){
+       echo Yii::$app->controller->renderPartial('trajetory', ['model' => $model]);
+    }?>
 </div>
-<?= Yii::$app->controller->renderPartial('trajetory'); ?>

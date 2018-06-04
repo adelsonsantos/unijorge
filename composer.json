@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "kint-php/kint": "~2.0.0",
         "zyx/zyx-phpmailer": "~0.9.2",
-        "kartik-v/yii2-dialog": "*"
+        "kartik-v/yii2-dialog": "*",
+        "kartik-v/yii2-widget-datepicker": "*"
     },
     "require-dev": {
         "kartik-v/yii2-widget-colorinput": "~1.0.3",
@@ -50,7 +51,9 @@
         "kartik-v/yii2-mpdf": "*",
         "yii2mod/yii2-google-maps-markers": "~1.4",
         "kartik-v/yii2-widget-fileinput": "~1.0.6",
-        "2amigos/yii2-file-upload-widget": "~1.0"
+        "2amigos/yii2-file-upload-widget": "~1.0",
+        "kartik-v/yii2-widget-datepicker": "*",
+        "2amigos/yii2-date-picker-widget ": "~1.0.7"
     },
     "config": {
         "process-timeout": 1800,

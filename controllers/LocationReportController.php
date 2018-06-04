@@ -29,12 +29,36 @@ class LocationReportController extends Controller
         ];
     }
 
-    public function actionTrajetory(){
+    public function actionTrajetory($device_id, $location_data_report_inicio, $location_data_report_fim){
 
-        $model = Yii::$app->request->get();
-        $result = UnijorgeLocationReport::find()->where(['device_id' => $model['device_id']])->andWhere(['>=', 'location_data', $model['location_data_report_inicio']])->all();
+        $model = new UnijorgeLocationReport();
+        ///$model = Yii::$app->request->get();
+        //$result = UnijorgeLocationReport::find()->where(['device_id' => $model['device_id']])->andWhere(['>=', 'location_data', $model['location_data_report_inicio']])->all();
         //d($result);
-        return $result;
+        return $this->render('trajetory',[
+            'model' => $model,
+            'device_id' => $device_id,
+            'location_data_report_inicio' => $location_data_report_inicio,
+            'location_data_report_fim' => $location_data_report_fim
+        ]);
+    }
+
+    public function actionSample()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            d($data);
+            /*$searchname= explode(":", $data['searchname']);
+            $searchby= explode(":", $data['searchby']);
+            $searchname= $searchname[0];
+            $searchby= $searchby[0];*/
+            $search = // your logic;
+                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'search' => $search,
+                'code' => 100,
+            ];
+        }
     }
 
     /**
@@ -47,16 +71,18 @@ class LocationReportController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model = new UnijorgeLocationReport();
 
-        if (Yii::$app->request->get()) {
-            $model = Yii::$app->request->get();
-            $result = UnijorgeLocationReport::find()->where(['device_id' => $model['device_id']])->andWhere(['>=', 'location_data', $model['location_data_report_inicio']])->all();
+        if (Yii::$app->request->post()) {
+
+            $model->load(Yii::$app->request->post());
+
+
+          //  $result = UnijorgeLocationReport::find()->where(['device_id' => $model['device_id']])->andWhere(['>=', 'location_data', $model['location_data_report_inicio']])->all();
             return
                 $this->render('index', [
                     'model' => $model
                 ]);
         }
         return $this->render('index', [
-
             'model' => $model
         ]);
     }
@@ -78,15 +104,19 @@ class LocationReportController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionReport()
     {
         $model = new UnijorgeLocationReport();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->location_id]);
+        if ($model->load(Yii::$app->request->post()) ) {
+            return $this->redirect(['trajetory',
+                'device_id' => $model->device_id,
+                'location_data_report_inicio' => $model->location_data_report_inicio,
+                'location_data_report_fim' => $model->location_data_report_fim
+            ]);
         }
 
-        return $this->render('create', [
+        return $this->render('report', [
             'model' => $model,
         ]);
     }

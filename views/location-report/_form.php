@@ -32,30 +32,24 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Location */
+/* @var $model app\models\UnijorgeLocationReport */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="customer-form">
-    <?php $form = ActiveForm::begin([
-        'enableClientValidation' => false,
-        'enableAjaxValidation' => true,
-        'validateOnChange' => true,
-        'validateOnBlur' => false,
-        'options' => [
-            'enctype' => 'multipart/form-data',
-            'id' => 'dynamic-form'
-        ]
-    ]); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <?= $form->field($model, 'location_data')->textInput(['maxlength' => true])->label('Descrição') ?>
+                        <?= $form->field($model, 'location_data_report_inicio')->textInput(['maxlength' => true])->label('Descrição') ?>
                     </div>
+                    <div class="col-sm-3">
+                        <?= $form->field($model, 'location_data_report_fim')->textInput(['maxlength' => true])->label('Descrição') ?>
 
+                    </div>
                     <div class="col-sm-2">
                         <?= $form->field($model, 'device_id')->input('number', ['min' => 0, 'max' => 1000]) ->label('Borda') ?>
                     </div>
@@ -70,9 +64,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
     </div>
 
 
-    <!-- <div class="form-group">
-        <?/*= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary']) */?>
-    </div>-->
+     <div class="form-group">
+         <?php d($model);?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-primary']) ?>
+    </div>
     <table class="diaria" style=" width: 100%">
         <tr class="bordaMenu">
             <th class="borda" style="text-align: center; width: 50%">
